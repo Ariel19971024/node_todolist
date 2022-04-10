@@ -22,7 +22,7 @@ const requestListener=(req,res)=>{
     res.writeHead(200, header);
     res.write(JSON.stringify({"status":"200","data":todos}));
     res.end();
-    }else if(req.method === 'POST'){
+    }else if(req.method === 'OPTIONS'){
         res.writeHead(200, header);
     }else if(req.url === '/todos' && req.method === 'POST'){
         req.on('end', ()=>{
