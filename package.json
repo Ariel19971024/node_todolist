@@ -10,9 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.26.1",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.2.10",
     "uuid": "^8.3.2"
   },
   "engines": {
-    "node":"14.x"
+    "node": "14.x"
   }
 }
