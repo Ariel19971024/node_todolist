@@ -23,7 +23,30 @@ const requestListener=(req,res)=>{
     res.write(JSON.stringify({"status":"200","data":todos}));
     res.end();
     }else if(req.method === 'OPTIONS'){
-        res.writeHead(200, header);
+        req.on('end', ()=>{
+            try{
+            const title = JSON.parse(body).title;
+            if(title){
+            const todo={
+                "title": title,
+                "id":uuidv4()
+            }
+            console.log(todo)
+            todos.push(todo)
+            res.writeHead(200, header);
+            res.write(JSON.stringify({"status":"200","message":"新增成功","data":[]}));
+            res.end();
+            }else{
+                res.writeHead(400, header);
+                res.write(JSON.stringify({"status":"400","message":"新增失敗","data":[]}));
+                res.end();
+            }
+         
+            }catch(e){
+                errHandler(res)
+            }
+
+        })
     }else if(req.url === '/todos' && req.method === 'POST'){
         req.on('end', ()=>{
             try{
