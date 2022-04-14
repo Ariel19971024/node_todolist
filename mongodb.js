@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 //Set up default mongoose connection
 var mongoDB = 'mongodb://127.0.0.1:27017/hotel';
 mongoose.connect(mongoDB).then((db)=>{
@@ -15,6 +14,14 @@ const User = mongoose.model('posts', {
     name:{ type:String },
      
 });
+const test = mongoose.model('users',{
+    title:{type:String}
+})
+
+let instance = new test({title:"do job"})
+instance.save(function (err) {
+    if (err) return handleError(err)
+  })
 User.find({ name:'Sheree Cordingly'}, function (err, docs) { 
     if (err){ 
         console.log(err); 
